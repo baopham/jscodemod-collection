@@ -3,7 +3,17 @@
   "version": "0.1.0",
   "description": "A collection of jscodemods",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "lint": "standard",
+    "lint:fix": "standard --fix"
+  },
+  "standard": {
+    "ignore": [
+      "/transformers/__testfixtures__"
+    ],
+    "env": {
+      "jest": true
+    }
   },
   "repository": {
     "type": "git",
@@ -23,6 +33,7 @@
     "jscodeshift": "^0.3.30"
   },
   "devDependencies": {
-    "jest": "^19.0.2"
+    "jest": "^19.0.2",
+    "standard": "^9.0.2"
   }
 }
