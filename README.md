@@ -15,7 +15,7 @@ Usage:
 
 ```bash
 cd transformers
-jscodeshift -t ./angular-injected-dep-to-es6-import.js /path/to-/your-angular-file.js --config='./config.example'
+jscodeshift -t ./angular-injected-dep-to-es6-import.js /path/to/your-angular-file.js --config='./config.example'
 ```
 
 
