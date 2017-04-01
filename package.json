@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "A collection of jscodemods",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -21,5 +21,8 @@
   "homepage": "https://github.com/baopham/jscodemod-collection#readme",
   "dependencies": {
     "jscodeshift": "^0.3.30"
+  },
+  "devDependencies": {
+    "jest": "^19.0.2"
   }
 }
