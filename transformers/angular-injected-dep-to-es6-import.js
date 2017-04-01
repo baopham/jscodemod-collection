@@ -1,5 +1,7 @@
 'use strict'
 
+const EOL = require('os').EOL
+
 module.exports = transformer
 
 function transformer (file, api, options) {
@@ -13,15 +15,26 @@ function transformer (file, api, options) {
 
   removeParams(j, root, params)
 
-  return root
+  insertImportStatements(j, root, config.importStatementGenerator(paramNames))
+
+  return root.toSource()
+}
+
+function insertImportStatements (j, root, importStatements) {
+  const useStrictPath = root
     .find(j.ExpressionStatement, {
       expression: {
         value: 'use strict'
       }
     })
-    .forEach(path => {
-      j(path).insertAfter(config.importStatmentGenerator(paramNames))
-    }).toSource()
+
+  if (useStrictPath.size()) {
+    j(useStrictPath.get()).insertAfter(importStatements)
+    return
+  }
+
+  const firstNode = root.find(j.Program).get('body', 0)
+  j(firstNode).insertBefore(`${EOL}${importStatements}`)
 }
 
 function removeParams (j, root, params) {

@@ -9,10 +9,10 @@ const ANGULAR_DEPS = [
 ]
 
 const config = {
-  importStatmentGenerator
+  importStatementGenerator
 }
 
-function importStatmentGenerator (names) {
+function importStatementGenerator (names) {
   const angularDeps = names.filter(name => ANGULAR_DEPS.includes(name))
   const nonAngularDeps = names.filter(name => !ANGULAR_DEPS.includes(name))
 
