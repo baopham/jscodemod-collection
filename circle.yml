@@ -1,0 +1,13 @@
+machine:
+  node:
+    version: 6.7
+
+dependencies:
+  override:
+    - yarn
+
+test:
+  override:
+    - yarn test
+  post:
+    - yarn run lint

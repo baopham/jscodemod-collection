@@ -1,6 +1,7 @@
 JSCodemod Collection
 ==========
 
+[![CircleCI](https://circleci.com/gh/baopham/jscodemod-collection.svg?style=svg)](https://circleci.com/gh/baopham/jscodemod-collection)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/) 
 
 A collection of JSCodemods
