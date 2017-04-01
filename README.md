@@ -9,8 +9,8 @@ Usage:
 * Convert Angular injected dependencies to ES6 import
 
 ```bash
-cd scripts
-jscodeshift -t ./angular-injected-dep-to-es6-import.js ../tests/angular-factory.js --config='./config.example'
+cd transformers
+jscodeshift -t ./angular-injected-dep-to-es6-import.js /path/to-/your-angular-file.js --config='./config.example'
 ```
 
 
