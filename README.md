@@ -19,6 +19,15 @@ cd transformers
 jscodeshift -t ./angular-injected-dep-to-es6-import.js /path/to/your-angular-file.js --config='./config.example'
 ```
 
+* A helper to collect all the Angular service, factory, constant etc. including their file paths.
+
+```
+cd /path/to/angular-project
+jscodeshift -s -t /path/to/jscodemod-collection/transformers/angular-collect.js --ignore-config=.gitignore ./client
+```
+
+You can then copy the output to a JSON file that can be used for later.
+
 
 Requirements:
 -------------
