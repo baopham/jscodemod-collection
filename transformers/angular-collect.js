@@ -6,11 +6,14 @@ function transformer (file, api, options) {
   const j = api.jscodeshift
   const root = j(file.source)
 
-  const serviceName = findServiceName(j, root)
-  serviceName && console.log(`"${serviceName}": "${file.path}",`)
+  const serviceNames = findServiceNames(j, root)
+
+  if (serviceNames.length) {
+    serviceNames.forEach(serviceName => console.log(`"${serviceName}": "${file.path}",`))
+  }
 }
 
-function findServiceName (j, root) {
+function findServiceNames (j, root) {
   const path = root
     .find(j.CallExpression, {
       callee: {
@@ -28,11 +31,10 @@ function findServiceName (j, root) {
     return null
   }
 
-  const [name] = path.get().node.arguments
+  const names = path.nodes()
+    .map(node => node.arguments[0])
+    .filter(arg => arg)
+    .map(arg => arg.value)
 
-  if (!name) {
-    return null
-  }
-
-  return name.value
+  return names
 }
