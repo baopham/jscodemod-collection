@@ -10,14 +10,49 @@ A collection of JSCodemods
 Usage:
 ------
 
-* Convert Angular injected dependencies to ES6 import
+### Convert Angular injected dependencies to ES6 import
+
+> Note: you will need to pass in the path to a config script for generating the import statements.
+> See [config.example.js](./transformers/config.example.js)
 
 ```bash
 cd transformers
 jscodeshift -t ./angular-injected-dep-to-es6-import.js /path/to/your-angular-file.js --config='./config.example'
 ```
 
-* A helper to collect all the Angular services, factories, constants etc. including their file paths
+Example:  
+
+* Input:
+
+```js
+'use strict';
+
+angular.module('angularApp')
+  .factory('helloWorld', helloWorld);
+
+function helloWorld($http, $q, helloWorldConstant) {
+
+}
+```
+
+* Output:
+
+```js
+'use strict';
+
+import { $http, $q } from '../../angularDeps';
+import helloWorldConstant from '../../helloWorld.constant';
+
+angular.module('angularApp')
+  .factory('helloWorld', helloWorld);
+
+function helloWorld() {
+
+}
+```
+
+
+### A helper to collect all the Angular services, factories, constants etc. including their file paths
 
 ```bash
 cd /path/to/angular-project
