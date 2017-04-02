@@ -1,6 +1,6 @@
 angular.module('angularApp')
   .factory('helloWorld', helloWorld);
 
-function helloWorld($http) {
+function helloWorld($http, $q, helloWorldConstant) {
 
 }

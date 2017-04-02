@@ -10,12 +10,9 @@ function transformer (file, api, options) {
   const config = require(options.config)
 
   const functionName = findFunctionName(j, root)
-  const params = findFunctionParams(j, root, functionName)
-  const paramNames = params.map(param => param.name)
+  const paramNames = findAndRemoveFunctionParams(j, root, functionName)
 
-  removeParams(j, root, params)
-
-  insertImportStatements(j, root, config.importStatementGenerator(paramNames))
+  insertImportStatements(j, root, config.importStatementGenerator(paramNames, file.path))
 
   return root.toSource()
 }
@@ -37,20 +34,7 @@ function insertImportStatements (j, root, importStatements) {
   j(firstNode).insertBefore(`${EOL}${importStatements}`)
 }
 
-function removeParams (j, root, params) {
-  params.forEach(param => {
-    root
-      .find(j.Identifier, {
-        name: param.name,
-        loc: param.loc
-      })
-      .forEach(path => {
-        j(path).remove()
-      })
-  })
-}
-
-function findFunctionParams (j, root, functionName) {
+function findAndRemoveFunctionParams (j, root, functionName) {
   const path = root
     .find(j.FunctionDeclaration, {
       id: {
@@ -58,7 +42,11 @@ function findFunctionParams (j, root, functionName) {
       }
     })
 
-  return path.get().node.params
+  const { node } = path.get()
+  const paramNames = node.params.map(param => param.name)
+  node.params = []
+
+  return paramNames
 }
 
 function findFunctionName (j, root) {
