@@ -28,7 +28,9 @@ function importStatementGenerator (names, filePath) {
   const angularDeps = names.filter(name => ANGULAR_DEPS.includes(name))
   const nonAngularDeps = names.filter(name => !ANGULAR_DEPS.includes(name))
 
-  const angularDepsImport = `import { ${angularDeps.join(', ')} } from '${DEFAULT_PATH_FOR_ANGULAR_DEPS}';`
+  const angularDepsImport = angularDeps.length
+    ? `import { ${angularDeps.join(', ')} } from '${DEFAULT_PATH_FOR_ANGULAR_DEPS}';`
+    : ''
   const nonAngularDepsImports = nonAngularDeps.map(dep => getImportStatementForNonAngular(filePath, dep))
 
   return [

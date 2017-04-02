@@ -11,3 +11,4 @@ const options = {
 defineTest(__dirname, 'angular-injected-dep-to-es6-import', options, 'angular-injected-dep-to-es6-import')
 defineTest(__dirname, 'angular-injected-dep-to-es6-import', options, 'angular-injected-dep-to-es6-import-no-use-strict')
 defineTest(__dirname, 'angular-injected-dep-to-es6-import', options, 'angular-injected-dep-to-es6-import-with-iife')
+defineTest(__dirname, 'angular-injected-dep-to-es6-import', options, 'angular-injected-dep-to-es6-import-no-deps')
