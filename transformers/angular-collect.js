@@ -7,7 +7,7 @@ function transformer (file, api, options) {
   const root = j(file.source)
 
   const serviceName = findServiceName(j, root)
-  serviceName && console.log(`${serviceName}: '${file.path},'`)
+  serviceName && console.log(`"${serviceName}": "${file.path}",`)
 }
 
 function findServiceName (j, root) {
