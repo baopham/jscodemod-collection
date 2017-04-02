@@ -1,7 +1,7 @@
 'use strict';
 
 import { $http, $q } from '../../angularDeps';
-import helloWorldConstant from '../../helloWorld.constant.js';
+import helloWorldConstant from '../../helloWorld.constant';
 
 (function () {
   angular.module('angularApp')
