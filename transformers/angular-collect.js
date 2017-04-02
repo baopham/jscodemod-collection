@@ -8,9 +8,7 @@ function transformer (file, api, options) {
 
   const serviceNames = findServiceNames(j, root)
 
-  if (serviceNames.length) {
-    serviceNames.forEach(serviceName => console.log(`"${serviceName}": "${file.path}",`))
-  }
+  serviceNames && serviceNames.forEach(serviceName => console.log(`"${serviceName}": "${file.path}",`))
 }
 
 function findServiceNames (j, root) {
