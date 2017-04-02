@@ -1,3 +1,9 @@
+'use strict'
+
+/**
+ * A config example that you can pass to the transformers
+ */
+
 const EOL = require('os').EOL
 const path = require('path')
 
