@@ -41,7 +41,7 @@ function importStatementGenerator (names, filePath) {
 
 function getImportStatementForNonAngular (filePath, dependency) {
   const dependencyPath = DEPENDENCY_MAPPER[dependency]
-  return `import ${dependency} from '${path.relative(filePath, dependencyPath).replace(/.js+$/, '')}';`
+  return `import ${dependency} from '${path.relative(path.dirname(filePath), dependencyPath).replace(/.js+$/, '')}';`
 }
 
 module.exports = config
